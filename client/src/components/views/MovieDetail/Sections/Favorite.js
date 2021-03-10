@@ -24,12 +24,11 @@ function Favorite(props) {
     }
 
     useEffect(() => {
-        
-
+    
         Axios.post('/api/favorite/favoriteNumber', variables)
             .then(response => {
                 if(response.data.success){
-                    setFavoriteNumber(response.data.FavoriteNumber)
+                    setFavoriteNumber(response.data.favoriteNumber)
                 }else{
                     alert('숫자 정보를 가져오는데 실패 했습니다.')
                 }
@@ -50,7 +49,7 @@ function Favorite(props) {
             Axios.post('/api/favorite/removeFromFavorite',variables)
             .then(response => {
                 if(response.data.success){
-                    setFavoriteNumber(FavoriteNumber - 1)
+                    setFavoriteNumber(FavoriteNumber-1)
                     setFavorited(!Favorited)
                 }else{
                     alert('Favorite 리스트에서 지우는 걸 실패했습니다.')
@@ -60,7 +59,7 @@ function Favorite(props) {
             Axios.post('/api/favorite/AddToFavorite',variables)
             .then(response => {
                 if(response.data.success){
-                    setFavoriteNumber(FavoriteNumber + 1)
+                    setFavoriteNumber(FavoriteNumber+1)
                     setFavorited(!Favorited)
                 }else{
                     alert('Favorite 리스트에 추가하는 걸 실패했습니다.')
@@ -73,7 +72,9 @@ function Favorite(props) {
 
     return (
         <div>
-            <button onClick={onClickFavorite}>{Favorited ? "Not Favorite" : "Add to Favorite"} {FavoriteNumber} </button>
+            <button onClick={onClickFavorite}>
+                {Favorited ? "Not Favorite" : "Add to Favorite"} {FavoriteNumber} 
+            </button>       
         </div>
     )
 }
